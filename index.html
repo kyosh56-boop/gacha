@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Gacha Kartu 30th</title>
+<style>
+:root{--bg:#f7f1e3;--card:#fffdf7;--text:#1c1917;--muted:#6b645a;--line:#dccfae;--accent:#b4232a;--common:#6b7280;--rare:#2563eb;--super:#c026d3;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#151011;--card:#201819;--text:#f3ebe0;--muted:#a89c8d;--line:#43302a;--accent:#e5484d;--common:#9ca3af;--rare:#60a5fa;--super:#e879f9;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#151011;--card:#201819;--text:#f3ebe0;--muted:#a89c8d;--line:#43302a;--accent:#e5484d;--common:#9ca3af;--rare:#60a5fa;--super:#e879f9;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;min-height:100vh}
+main{max-width:480px;margin:0 auto;padding:24px 16px}
+h1{text-align:center;margin:0 0 4px;font-family:"Hiragino Mincho ProN","Yu Mincho","Noto Serif JP",Georgia,serif;letter-spacing:.04em}
+.band{text-align:center;color:var(--accent);font-size:13px;letter-spacing:.3em;margin:0 0 8px;padding:6px 0;border-top:1px solid var(--accent);border-bottom:1px solid var(--accent)}
+.capsule img{max-height:170px;max-width:100%;border-radius:6px}
+.sub{text-align:center;color:var(--muted);margin:0 0 20px;font-size:14px}
+.card{background:var(--card);border:1px solid var(--line);border-top:3px solid var(--accent);border-radius:6px;padding:20px;margin-bottom:16px}
+.stage{text-align:center}
+.capsule{font-size:88px;line-height:1.1;min-height:100px}
+.capsule.shake{animation:shake .6s}
+.capsule.pop{animation:pop .5s}
+@keyframes shake{0%,100%{transform:rotate(0)}20%{transform:rotate(-14deg)}40%{transform:rotate(14deg)}60%{transform:rotate(-10deg)}80%{transform:rotate(10deg)}}
+@keyframes pop{0%{transform:scale(.3)}70%{transform:scale(1.2)}100%{transform:scale(1)}}
+.name{font-size:20px;font-weight:700;min-height:28px}
+.tag{font-size:13px;font-weight:700;min-height:20px}
+button{width:100%;margin-top:14px;padding:14px;border:0;border-radius:12px;background:var(--accent);color:#fff;font-size:18px;font-weight:700;cursor:pointer}
+button:disabled{opacity:.6;cursor:wait}
+.nav{display:flex;gap:16px;justify-content:center;margin:0 0 20px;font-size:14px}.nav a{color:var(--accent);text-decoration:none;font-weight:600}
+.btns{display:flex;gap:10px}.btns button{flex:1}
+ol.steps{margin:0;padding-left:20px;font-size:14px}ol.steps li{display:list-item;border:0;padding:4px 0}
+details{border-bottom:1px solid var(--line);padding:8px 0;font-size:14px}details:last-child{border:0}summary{cursor:pointer;font-weight:600}details p{color:var(--muted);margin:8px 0 0}
+.foot{text-align:center;color:var(--muted);font-size:12px;margin:8px 0 0}
+h2{font-size:16px;margin:0 0 10px}
+ul{list-style:none;margin:0;padding:0}
+li{display:flex;justify-content:space-between;gap:8px;padding:6px 0;border-bottom:1px solid var(--line);font-size:14px}
+li:last-child{border:0}
+.Common{color:var(--common)}.Rare{color:var(--rare)}.Super{color:var(--super)}
+.stats{display:flex;justify-content:space-around;text-align:center;font-size:13px;color:var(--muted)}
+.stats b{display:block;font-size:20px;color:var(--text)}
+</style>
+</head>
+<body>
+<main>
+<div class="band">30周年記念</div>
+<h1>🎴 Gacha Kartu 30th</h1>
+<p class="sub">Tarik kartu koleksi edisi 30th secara acak. Ini simulator, tanpa uang sungguhan.</p>
+<nav class="nav"><a href="#gacha">Gacha</a><a href="#hadiah">Hadiah</a><a href="#cara">Cara main</a><a href="#faq">FAQ</a></nav>
+
+<div class="card stage" id="gacha">
+<div class="capsule" id="capsule">🎴</div>
+<div class="name" id="name">Siap menarik?</div>
+<div class="tag" id="tag"></div>
+<div class="btns"><button id="btn">Tarik 1x</button><button id="btn10">Tarik 10x</button></div>
+</div>
+
+<div class="card stats">
+<div><b id="total">0</b>Total tarikan</div>
+<div><b id="uniq">0</b>Hadiah berbeda</div>
+</div>
+
+<div class="card" id="hadiah">
+<h2>Daftar hadiah dan peluang</h2>
+<ul id="prizes"></ul>
+</div>
+
+<div class="card">
+<h2>Riwayat (10 terakhir)</h2>
+<ul id="history"><li><span>Belum ada tarikan</span></li></ul>
+</div>
+<div class="card" id="cara">
+<h2>Cara main</h2>
+<ol class="steps"><li>Tekan Tarik 1x untuk satu kali tarikan, atau Tarik 10x untuk sepuluh sekaligus.</li><li>Hadiah muncul secara acak sesuai peluang pada daftar hadiah.</li><li>Pantau riwayat dan jumlah hadiah berbeda yang sudah kamu dapat.</li></ol>
+</div>
+
+<div class="card" id="faq">
+<h2>FAQ</h2>
+<details><summary>Apakah hadiahnya nyata?</summary><p>Tidak. Ini hanya simulator, tidak ada pembayaran dan tidak ada hadiah yang dikirim.</p></details>
+<details><summary>Apakah peluangnya adil?</summary><p>Setiap tarikan diacak ulang dan tidak dipengaruhi tarikan sebelumnya. Angka peluang sama dengan yang tertera di daftar hadiah.</p></details>
+<details><summary>Kenapa Tarik 10x menampilkan satu hadiah saja?</summary><p>Layar utama menampilkan hadiah terbaik dari sepuluh tarikan itu. Semua hasilnya tercatat di riwayat.</p></details>
+</div>
+<p class="foot">Simulator hiburan buatan penggemar, bukan produk resmi.</p>
+</main>
+
+<script>
+// 1. Daftar hadiah. Total peluang harus 100. Ubah angkanya sesuai keinginan.
+// Untuk memakai foto kartu, tambahkan img: "img/nama-file.jpg" pada hadiah (contoh: { img: "img/psa10.jpg", icon: ... }).
+const prizes = [
+  { img: "img/psa10.jpg", icon: "🏆", name: "Slab PSA 10", chance: 0.5, cls: "Super" },
+  { img: "img/booster-box.jpg", icon: "📦", name: "Booster Box 30th", chance: 1.5, cls: "Super" },
+  { img: "img/pack-5pcs.jpg", icon: "🎁", name: "Booster Pack 30th (5 pcs)", chance: 5, cls: "Rare" },
+  { img: "img/booster-pack.jpg", icon: "🎴", name: "Booster Pack 30th", chance: 10, cls: "Rare" },
+  { img: "img/ar.jpg", icon: "✨", name: "AR 30th", chance: 15, cls: "Rare" },
+  { img: "img/rr.jpg", icon: "⭐", name: "RR 30th", chance: 18, cls: "Common" },
+  { img: "img/common.jpg", icon: "🃏", name: "Common Card 30th", chance: 50, cls: "Common" }
+];
+
+let total = 0;
+const owned = new Set();
+const history = [];
+
+function pct(n) { return String(n).replace(".", ",") + "%"; }
+
+// Menampilkan foto hadiah; kalau tidak ada atau gagal dimuat, pakai emoji
+function showPrize(p) {
+  capsule.textContent = "";
+  if (p.img) {
+    const im = document.createElement("img");
+    im.alt = p.name;
+    im.onerror = function () { capsule.textContent = p.icon; };
+    im.src = p.img;
+    capsule.appendChild(im);
+  } else {
+    capsule.textContent = p.icon;
+  }
+}
+
+// 2. Memilih hadiah acak berdasarkan peluang
+function pull() {
+  let roll = Math.random() * 100;
+  for (const p of prizes) {
+    if (roll < p.chance) return p;
+    roll -= p.chance;
+  }
+  return prizes[prizes.length - 1];
+}
+
+const capsule = document.getElementById("capsule");
+const nameEl = document.getElementById("name");
+const tagEl = document.getElementById("tag");
+const btn = document.getElementById("btn");
+
+// 3. Saat tombol ditekan: animasi, lalu tampilkan hasil
+btn.addEventListener("click", function () {
+  btn.disabled = true;
+  capsule.className = "capsule shake";
+  capsule.textContent = "🎴";
+  nameEl.textContent = "Mengocok...";
+  tagEl.textContent = "";
+
+  setTimeout(function () {
+    const p = pull();
+    capsule.className = "capsule pop";
+    showPrize(p);
+    nameEl.textContent = p.name;
+    tagEl.textContent = "Peluang " + pct(p.chance);
+    tagEl.className = "tag " + p.cls;
+
+    total++;
+    owned.add(p.name);
+    history.unshift(p);
+    if (history.length > 10) history.pop();
+    render();
+    btn.disabled = false;
+  }, 700);
+});
+
+function row(left, right, cls) {
+  const li = document.createElement("li");
+  const a = document.createElement("span");
+  a.textContent = left;
+  const b = document.createElement("span");
+  b.textContent = right;
+  b.className = cls;
+  li.appendChild(a);
+  li.appendChild(b);
+  return li;
+}
+
+// 4. Perbarui statistik dan riwayat
+function render() {
+  document.getElementById("total").textContent = total;
+  document.getElementById("uniq").textContent = owned.size;
+  const ul = document.getElementById("history");
+  ul.innerHTML = "";
+  history.forEach(function (h) { ul.appendChild(row(h.icon + " " + h.name, pct(h.chance), h.cls)); });
+}
+
+const btn10 = document.getElementById("btn10");
+btn10.addEventListener("click", function () {
+  btn.disabled = true;
+  btn10.disabled = true;
+  capsule.className = "capsule shake";
+  capsule.textContent = "🎴";
+  nameEl.textContent = "Mengocok 10x...";
+  tagEl.textContent = "";
+  setTimeout(function () {
+    const got = [];
+    for (let i = 0; i < 10; i++) {
+      const p = pull();
+      got.push(p);
+      total++;
+      owned.add(p.name);
+      history.unshift(p);
+    }
+    while (history.length > 10) history.pop();
+    const best = got.reduce(function (a, b) { return b.chance < a.chance ? b : a; });
+    capsule.className = "capsule pop";
+    showPrize(best);
+    nameEl.textContent = "Terbaik: " + best.name;
+    tagEl.textContent = "10 tarikan selesai, lihat riwayat";
+    tagEl.className = "tag " + best.cls;
+    render();
+    btn.disabled = false;
+    btn10.disabled = false;
+  }, 900);
+});
+
+const pl = document.getElementById("prizes");
+prizes.forEach(function (p) { pl.appendChild(row(p.icon + " " + p.name, pct(p.chance), p.cls)); });
+</script>
+</body>
+</html>
