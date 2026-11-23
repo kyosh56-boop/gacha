@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Gacha Kartu 30th</title>
+<style>
+:root{--bg:#eef3ff;--card:#ffffff;--text:#141a33;--muted:#59627f;--line:#d5def7;--red:#ee1515;--yellow:#ffcb05;--blue:#3b4cca;--common:#7a819c;--rare:#2f6fe0;--super:#b45309;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0c1030;--card:#171d4a;--text:#f2f4ff;--muted:#a3abd6;--line:#2c3578;--common:#a3abd6;--rare:#6ea2ff;--super:#ffcb05;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0c1030;--card:#171d4a;--text:#f2f4ff;--muted:#a3abd6;--line:#2c3578;--common:#a3abd6;--rare:#6ea2ff;--super:#ffcb05;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{margin:0;color:var(--text);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;min-height:100vh;background-color:var(--bg);background-image:radial-gradient(circle at 15% 0,rgba(255,203,5,.28),transparent 45%),radial-gradient(circle at 95% 25%,rgba(238,21,21,.2),transparent 45%)}
+main{max-width:480px;margin:0 auto;padding:22px 16px 30px}
+.top{display:flex;align-items:center;justify-content:center;gap:10px}
+.mini{width:36px;height:36px;border-radius:50%;border:4px solid #111;background:linear-gradient(#ee1515 0 44%,#111 44% 56%,#fff 56%);position:relative;flex:none}
+.mini::after{content:"";position:absolute;left:50%;top:50%;width:12px;height:12px;transform:translate(-50%,-50%);border-radius:50%;background:#fff;border:3px solid #111}
+h1{margin:0;font-size:32px;font-weight:900;letter-spacing:.02em;color:var(--yellow);-webkit-text-stroke:2px var(--blue);paint-order:stroke fill;text-shadow:0 3px 0 rgba(59,76,202,.5)}
+.band{text-align:center;margin:10px auto 6px;width:fit-content;background:var(--red);color:#fff;font-size:12px;font-weight:700;letter-spacing:.25em;padding:4px 14px;border-radius:999px}
+.sub{text-align:center;color:var(--muted);margin:8px 0 14px;font-size:14px}
+.nav{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:0 0 18px}
+.nav a{background:var(--card);border:1px solid var(--line);color:var(--blue);text-decoration:none;font-weight:700;font-size:13px;padding:6px 14px;border-radius:999px}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .nav a{color:var(--yellow)}}
+.card{background:var(--card);border:1px solid var(--line);border-top:4px solid var(--red);border-radius:14px;padding:18px;margin-bottom:16px;box-shadow:0 6px 18px rgba(20,26,51,.12)}
+.stage{text-align:center;border-top-color:var(--yellow)}
+.ball{width:124px;height:124px;border-radius:50%;margin:10px auto 14px;border:7px solid #111;background:linear-gradient(#ee1515 0 44%,#111 44% 56%,#fff 56%);position:relative;box-shadow:0 10px 24px rgba(0,0,0,.35);animation:float 2.4s ease-in-out infinite}
+.ball::after{content:"";position:absolute;left:50%;top:50%;width:36px;height:36px;transform:translate(-50%,-50%);border-radius:50%;background:#fff;border:7px solid #111}
+.ball.shake{animation:shake .5s infinite}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@keyframes shake{0%,100%{transform:rotate(0)}25%{transform:rotate(-16deg)}75%{transform:rotate(16deg)}}
+@keyframes pop{0%{transform:scale(.3) rotate(-8deg)}70%{transform:scale(1.08)}100%{transform:scale(1)}}
+@keyframes holo{0%{background-position:0 50%}100%{background-position:300% 50%}}
+.pcard{width:220px;margin:6px auto 12px;padding:9px;border-radius:14px;color:#1c1917;background:#c9ccd3;animation:pop .5s;text-align:center}
+.pcard .in{background:#fffbe8;border-radius:8px;padding:10px 8px 12px}
+.art{height:150px;display:flex;align-items:center;justify-content:center;font-size:84px;border-radius:6px;background:radial-gradient(circle,#fff 0,#ffe9a8 100%)}
+.art img{max-height:150px;max-width:100%;border-radius:4px}
+.pname{font-weight:800;font-size:17px;margin-top:10px;min-height:22px}
+.ptag{font-size:12px;color:#57534e;margin-top:2px}
+.pcard.r-Rare{background:#4f8cff;box-shadow:0 0 22px rgba(79,140,255,.7)}
+.pcard.r-Super{background:linear-gradient(115deg,#ffd54a,#ff7ac6,#7aa7ff,#7affc9,#ffd54a);background-size:300% 300%;animation:pop .5s,holo 3s linear infinite;box-shadow:0 0 28px rgba(255,203,5,.9)}
+.status{min-height:22px;font-size:14px;color:var(--muted);font-weight:600}
+.btns{display:flex;gap:10px;margin-top:12px}
+button{flex:1;padding:14px;border:0;border-radius:12px;color:#fff;font-size:17px;font-weight:800;cursor:pointer;box-shadow:0 4px 0 rgba(0,0,0,.3)}
+button:active{transform:translateY(3px);box-shadow:0 1px 0 rgba(0,0,0,.3)}
+#btn{background:var(--red)}#btn10{background:var(--blue)}
+button:disabled{opacity:.6;cursor:wait}
+h2{font-size:16px;margin:0 0 10px}
+ul{list-style:none;margin:0;padding:0}
+li{display:flex;justify-content:space-between;gap:8px;padding:7px 0;border-bottom:1px solid var(--line);font-size:14px}
+li:last-child{border:0}
+.Common{color:var(--common)}.Rare{color:var(--rare)}.Super{color:var(--super);font-weight:700}
+.stats{display:flex;justify-content:space-around;text-align:center;font-size:13px;color:var(--muted)}
+.stats b{display:block;font-size:22px;color:var(--text)}
+ol.steps{margin:0;padding-left:20px;font-size:14px}ol.steps li{display:list-item;border:0;padding:4px 0}
+details{border-bottom:1px solid var(--line);padding:8px 0;font-size:14px}details:last-child{border:0}summary{cursor:pointer;font-weight:700}details p{color:var(--muted);margin:8px 0 0}
+.foot{text-align:center;color:var(--muted);font-size:12px;margin:8px 0 0}
+</style>
+</head>
+<body>
+<main>
+<div class="top"><div class="mini"></div><h1>Gacha Kartu 30th</h1></div>
+<div class="band">30周年記念</div>
+<p class="sub">Tarik kartu koleksi edisi 30th secara acak. Ini simulator, tanpa uang sungguhan.</p>
+<nav class="nav"><a href="#gacha">Gacha</a><a href="#hadiah">Hadiah</a><a href="#cara">Cara main</a><a href="#faq">FAQ</a></nav>
+
+<div class="card stage" id="gacha">
+<div class="ball" id="ball"></div>
+<div class="pcard r-Common" id="pcard" hidden><div class="in"><div class="art" id="art"></div><div class="pname" id="pname"></div><div class="ptag" id="ptag"></div></div></div>
+<div class="status" id="status">Siap membuka Poké Ball?</div>
+<div class="btns"><button id="btn">Tarik 1x</button><button id="btn10">Tarik 10x</button></div>
+</div>
+
+<div class="card stats">
+<div><b id="total">0</b>Total tarikan</div>
+<div><b id="uniq">0</b>Hadiah berbeda</div>
+</div>
+
+<div class="card" id="hadiah">
+<h2>Daftar hadiah dan peluang</h2>
+<ul id="prizes"></ul>
+</div>
+
+<div class="card">
+<h2>Riwayat (10 terakhir)</h2>
+<ul id="history"><li><span>Belum ada tarikan</span></li></ul>
+</div>
+
+<div class="card" id="cara">
+<h2>Cara main</h2>
+<ol class="steps"><li>Tekan Tarik 1x untuk satu kali tarikan, atau Tarik 10x untuk sepuluh sekaligus.</li><li>Poké Ball terbuka dan hadiah muncul secara acak sesuai peluangnya.</li><li>Kartu Ultra Rare berkilau seperti holo. Pantau riwayat dan hadiah berbeda yang sudah kamu dapat.</li></ol>
+</div>
+
+<div class="card" id="faq">
+<h2>FAQ</h2>
+<details><summary>Apakah hadiahnya nyata?</summary><p>Tidak. Ini hanya simulator, tidak ada pembayaran dan tidak ada hadiah yang dikirim.</p></details>
+<details><summary>Apakah peluangnya adil?</summary><p>Setiap tarikan diacak ulang dan tidak dipengaruhi tarikan sebelumnya. Angka peluang sama dengan yang tertera di daftar hadiah.</p></details>
+<details><summary>Kenapa Tarik 10x menampilkan satu kartu saja?</summary><p>Layar utama menampilkan hadiah terbaik dari sepuluh tarikan itu. Semua hasilnya tercatat di riwayat.</p></details>
+</div>
+<p class="foot">Simulator hiburan buatan penggemar, bukan produk resmi. Pokémon dan nama terkait adalah merek milik pemiliknya.</p>
+</main>
+
+<script>
+// 1. Daftar hadiah. Total peluang harus 100. Ubah angkanya sesuai keinginan.
+// Untuk memakai foto kartu, tambahkan img: "img/nama-file.jpg" pada hadiah (contoh: { img: "img/psa10.jpg", icon: ... }).
+const prizes = [
+  { img: "img/psa10.jpg", icon: "🏆", name: "Slab PSA 10", chance: 0.5, cls: "Super" },
+  { img: "img/booster-box.jpg", icon: "📦", name: "Booster Box 30th", chance: 1.5, cls: "Super" },
+  { img: "img/pack-5pcs.jpg", icon: "🎁", name: "Booster Pack 30th (5 pcs)", chance: 5, cls: "Rare" },
+  { img: "img/booster-pack.jpg", icon: "🎴", name: "Booster Pack 30th", chance: 10, cls: "Rare" },
+  { img: "img/ar.jpg", icon: "✨", name: "AR 30th", chance: 15, cls: "Rare" },
+  { img: "img/rr.jpg", icon: "⭐", name: "RR 30th", chance: 18, cls: "Common" },
+  { img: "img/common.jpg", icon: "🃏", name: "Common Card 30th", chance: 50, cls: "Common" }
+];
+
+let total = 0;
+const owned = new Set();
+const history = [];
+const $ = function (id) { return document.getElementById(id); };
+function pct(n) { return String(n).replace(".", ",") + "%"; }
+
+// 2. Memilih hadiah acak berdasarkan peluang
+function pull() {
+  let roll = Math.random() * 100;
+  for (const p of prizes) {
+    if (roll < p.chance) return p;
+    roll -= p.chance;
+  }
+  return prizes[prizes.length - 1];
+}
+
+const ball = $("ball"), pcard = $("pcard"), art = $("art"), pname = $("pname"), ptag = $("ptag");
+const status = $("status"), btn = $("btn"), btn10 = $("btn10");
+
+function busy(msg) {
+  btn.disabled = true;
+  btn10.disabled = true;
+  pcard.hidden = true;
+  ball.hidden = false;
+  ball.className = "ball shake";
+  status.textContent = msg;
+}
+
+// 3. Menampilkan kartu hasil (pakai foto kalau ada, kalau tidak pakai emoji)
+function reveal(p, msg) {
+  ball.hidden = true;
+  pcard.hidden = false;
+  pcard.className = "pcard r-" + p.cls;
+  art.textContent = "";
+  if (p.img) {
+    const im = document.createElement("img");
+    im.alt = p.name;
+    im.onerror = function () { art.textContent = p.icon; };
+    im.src = p.img;
+    art.appendChild(im);
+  } else {
+    art.textContent = p.icon;
+  }
+  pname.textContent = p.name;
+  ptag.textContent = "Peluang " + pct(p.chance);
+  status.textContent = msg;
+  btn.disabled = false;
+  btn10.disabled = false;
+}
+
+function record(p) {
+  total++;
+  owned.add(p.name);
+  history.unshift(p);
+  if (history.length > 10) history.pop();
+}
+
+btn.addEventListener("click", function () {
+  busy("Membuka Poké Ball...");
+  setTimeout(function () {
+    const p = pull();
+    record(p);
+    reveal(p, "Kamu mendapat: " + p.name);
+    render();
+  }, 800);
+});
+
+btn10.addEventListener("click", function () {
+  busy("Membuka 10 Poké Ball...");
+  setTimeout(function () {
+    const got = [];
+    for (let i = 0; i < 10; i++) { const p = pull(); got.push(p); record(p); }
+    const best = got.reduce(function (a, b) { return b.chance < a.chance ? b : a; });
+    reveal(best, "10 tarikan selesai. Terbaik: " + best.name + ". Lihat riwayat di bawah.");
+    render();
+  }, 1000);
+});
+
+function row(left, right, cls) {
+  const li = document.createElement("li");
+  const a = document.createElement("span");
+  a.textContent = left;
+  const b = document.createElement("span");
+  b.textContent = right;
+  b.className = cls;
+  li.appendChild(a);
+  li.appendChild(b);
+  return li;
+}
+
+// 4. Perbarui statistik dan riwayat
+function render() {
+  $("total").textContent = total;
+  $("uniq").textContent = owned.size;
+  const ul = $("history");
+  ul.innerHTML = "";
+  history.forEach(function (h) { ul.appendChild(row(h.icon + " " + h.name, pct(h.chance), h.cls)); });
+}
+
+const pl = $("prizes");
+prizes.forEach(function (p) { pl.appendChild(row(p.icon + " " + p.name, pct(p.chance), p.cls)); });
+</script>
+</body>
+</html>
